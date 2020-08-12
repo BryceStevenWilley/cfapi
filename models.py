@@ -99,6 +99,7 @@ class Organization(db.Model):
     tsv_body = db.Column(TSVectorType())
     id = db.Column(db.Unicode())
     logo_url = db.Column(db.Unicode())
+    previous_names = db.Column(JSONB())
 
     # Relationships
     # can contain events, stories, projects (these relationships are defined in the child objects)
@@ -121,6 +122,7 @@ class Organization(db.Model):
         self.id = safe_name(raw_name(name))
         self.members_count = kwargs.get('members_count')
         self.logo_url = kwargs.get('logo_url')
+        self.previous_names = kwargs.get('previous_names')
 
     def current_events(self):
         '''
